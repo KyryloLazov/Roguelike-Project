@@ -24,7 +24,7 @@ namespace Weapons.Domain.Projectile.Effects
 
         public void OnHit(WeaponProjectile weaponProjectile, GameObject target, Vector3 point)
         {
-            Debug.Log("BOOM!");
+           UnityEngine.Debug.Log("BOOM");
             // Physics.OverlapSphere(...)
         }
     }

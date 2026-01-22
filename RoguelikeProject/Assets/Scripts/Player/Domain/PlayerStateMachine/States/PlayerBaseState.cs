@@ -1,3 +1,4 @@
+using Player.Domain.Events;
 using Player.Domain.PlayerStateMachine.Handlers;
 using Player.Presentation;
 
@@ -8,12 +9,15 @@ namespace Player.Domain.PlayerStateMachine.States
         protected readonly InitializationPlayerStateMachine _stateMachine;
         protected readonly PlayerStateMachineData _stateData;
         protected readonly PlayerMover PlayerMover;
+        protected readonly PlayerEvents PlayerEvents;
 
-        protected PlayerBaseState(InitializationPlayerStateMachine stateMachine, PlayerStateMachineData stateData, PlayerMover mover)
+        protected PlayerBaseState(InitializationPlayerStateMachine stateMachine, PlayerStateMachineData stateData, 
+            PlayerMover mover, PlayerEvents playerEvents)
         {
             _stateMachine = stateMachine;
             _stateData = stateData;
             PlayerMover = mover;
+            PlayerEvents = playerEvents;
         }
 
         public virtual void OnEnter() { }

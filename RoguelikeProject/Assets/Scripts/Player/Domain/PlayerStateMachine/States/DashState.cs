@@ -1,5 +1,6 @@
 using Player.Infrastructure.Config;
 using Cysharp.Threading.Tasks;
+using Player.Domain.Events;
 using Player.Presentation;
 using UnityEngine;
 
@@ -12,12 +13,14 @@ namespace Player.Domain.PlayerStateMachine.States
         public DashState(
             InitializationPlayerStateMachine stateMachine,
             PlayerStateMachineData stateData,
-            PlayerMover mover)
-            : base(stateMachine, stateData, mover) { }
+            PlayerMover mover,
+            PlayerEvents playerEvents)
+            : base(stateMachine, stateData, mover, playerEvents) { }
 
         public override void OnEnter()
         {
             _stateData.IsDashing.Value = true;
+            PlayerEvents.OnDashStarted.OnNext(UniRx.Unit.Default);
             
             var input = _stateData.MovementInput;
             _dashDirection = PlayerMover.GetWorldMovementDirection(input);

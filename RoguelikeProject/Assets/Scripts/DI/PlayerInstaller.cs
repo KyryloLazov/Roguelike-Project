@@ -1,11 +1,16 @@
+using ItemSystem.Domain;
+using Player.Domain.Events;
 using Player.Domain.Input;
+using Player.Domain.Items.Player.Domain.Items;
 using Player.Domain.PlayerStateMachine;
 using Player.Domain.PlayerStateMachine.Handlers;
 using Player.Domain.PlayerStateMachine.States;
 using Player.Domain.PlayerStats;
+using Player.Domain.PlayerStatus;
 using Player.Infrastructure.Config;
 using Player.Presentation;
 using UnityEngine;
+using Weapons.Domain;
 using Weapons.Infrastructure.Config;
 
 namespace DI
@@ -15,6 +20,7 @@ namespace DI
         [SerializeField] private PlayerValuesConfig _playerConfig;
         [SerializeField] private PlayerMover _playerMover;
         [SerializeField] private WeaponConfig _startWeaponConfig;
+        [SerializeField] private PlayerWeaponController _playerWeaponController;
 
         public override void InstallBindings()
         {
@@ -24,6 +30,7 @@ namespace DI
             BindNewInstance<DesktopInputService>();
             
             BindNewInstance<PlayerStatsModel>();
+            BindNewInstance<PlayerStatusModel>();
             
             BindNewInstance<PlayerStateMachineData>();
             BindNewInstance<InitializationPlayerStateMachine>();
@@ -33,6 +40,11 @@ namespace DI
             BindNewInstance<StateHandleChain>();
             
             Container.BindInstance(_startWeaponConfig);
+            Container.BindInstance(_playerWeaponController);
+            
+            BindNewInstance<PlayerEvents>();
+            BindNewInstance<PlayerContext>();
+            BindNewInstance<InventoryController>();
         }
     }
 }

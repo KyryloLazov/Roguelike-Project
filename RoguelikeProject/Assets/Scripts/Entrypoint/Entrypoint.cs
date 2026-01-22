@@ -23,7 +23,6 @@ namespace Entrypoint
         private void Update()
         {
             _fsm.PlayerStateMachine.currentStates?.Update();
-            Debug.Log($"State: {_fsm.PlayerStateMachine.currentStates}"); 
         }
         
         public void FixedUpdate()

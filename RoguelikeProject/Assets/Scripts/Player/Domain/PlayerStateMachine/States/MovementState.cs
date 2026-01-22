@@ -1,3 +1,4 @@
+using Player.Domain.Events;
 using Player.Infrastructure.Config;
 using Player.Presentation;
 
@@ -8,8 +9,9 @@ namespace Player.Domain.PlayerStateMachine.States
         public MovementState(
             InitializationPlayerStateMachine stateMachine,
             PlayerStateMachineData stateData,
-            PlayerMover mover)
-            : base(stateMachine, stateData, mover) { }
+            PlayerMover mover,
+            PlayerEvents playerEvents)
+            : base(stateMachine, stateData, mover, playerEvents) { }
 
         public override void FixedUpdate()
         {

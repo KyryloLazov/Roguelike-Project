@@ -1,4 +1,5 @@
 using System;
+using Player.Domain.Events;
 using Player.Domain.PlayerStats;
 using Player.Infrastructure.Config;
 using UniRx;
@@ -12,11 +13,13 @@ namespace Player.Domain.PlayerStatus
 
         private readonly ReactiveProperty<float> _currentHealth;
         private readonly IPlayerStatsProvider _statsProvider;
+        private readonly PlayerEvents _playerEvents;
         private readonly CompositeDisposable _disposables = new();
 
-        public PlayerStatusModel(IPlayerStatsProvider statsProvider)
+        public PlayerStatusModel(IPlayerStatsProvider statsProvider, PlayerEvents playerEvents)
         {
             _statsProvider = statsProvider;
+            _playerEvents = playerEvents;
 
             int maxHealth = Mathf.CeilToInt(_statsProvider.GetStat(StatType.MaxHealth).Value);
             _currentHealth = new ReactiveProperty<float>(maxHealth);
@@ -33,12 +36,15 @@ namespace Player.Domain.PlayerStatus
         public void TakeDamage(int amount)
         {
             int maxHealth = Mathf.CeilToInt(_statsProvider.GetStat(StatType.MaxHealth).Value);
+            UnityEngine.Debug.Log($"Trying to changing Health from {_currentHealth.Value} to {_currentHealth.Value - amount}");
             _currentHealth.Value = Mathf.Clamp(_currentHealth.Value - amount, 0, maxHealth);
+            _playerEvents.OnDamageTaken.OnNext(CurrentHealth.Value);
         }
 
         public void Heal(int amount)
         {
             TakeDamage(-amount);
+            _playerEvents.OnDamageTaken.OnNext(CurrentHealth.Value);
         }
 
         public void Dispose() => _disposables.Dispose();

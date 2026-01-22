@@ -24,7 +24,7 @@ namespace Weapons.Domain.Projectile.Effects
         public void OnHit(WeaponProjectile weaponProjectile, GameObject target, Vector3 point)
         {
             // target.GetComponent<IDamageable>()?.ApplyPoison(...)
-            Debug.Log($"Poison applied to {target.name} for {_duration}s");
+            UnityEngine.Debug.Log($"Poison applied to {target.name} for {_duration}s");
         }
     }
 }

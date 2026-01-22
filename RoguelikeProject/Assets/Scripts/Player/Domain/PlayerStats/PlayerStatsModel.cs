@@ -39,6 +39,7 @@ namespace Player.Domain.PlayerStats
             if (_stats.TryGetValue(type, out var stat))
             {
                 stat.Value += amount;
+                UnityEngine.Debug.Log($"Adding {amount} to {type}");
             }
         }
 
@@ -47,6 +48,7 @@ namespace Player.Domain.PlayerStats
             if (_stats.TryGetValue(type, out var stat))
             {
                 stat.Value = value;
+                UnityEngine.Debug.Log($"Setting {type} to {value}");
             }
         }
 
