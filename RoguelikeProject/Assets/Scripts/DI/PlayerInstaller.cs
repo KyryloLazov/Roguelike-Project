@@ -6,6 +6,7 @@ using Player.Domain.PlayerStats;
 using Player.Infrastructure.Config;
 using Player.Presentation;
 using UnityEngine;
+using Weapons.Infrastructure.Config;
 
 namespace DI
 {
@@ -13,20 +14,25 @@ namespace DI
     {
         [SerializeField] private PlayerValuesConfig _playerConfig;
         [SerializeField] private PlayerMover _playerMover;
+        [SerializeField] private WeaponConfig _startWeaponConfig;
 
         public override void InstallBindings()
         {
             BindInstance(_playerConfig);
             BindInstance(_playerMover);
             
+            BindNewInstance<DesktopInputService>();
+            
             BindNewInstance<PlayerStatsModel>();
+            
             BindNewInstance<PlayerStateMachineData>();
             BindNewInstance<InitializationPlayerStateMachine>();
             BindNewInstance<DashStateHandler>();
             BindNewInstance<MovementStateHandler>();
             BindNewInstance<IdleStateHandler>();
             BindNewInstance<StateHandleChain>();
-            BindNewInstance<DesktopInputService>();
+            
+            Container.BindInstance(_startWeaponConfig);
         }
     }
 }
