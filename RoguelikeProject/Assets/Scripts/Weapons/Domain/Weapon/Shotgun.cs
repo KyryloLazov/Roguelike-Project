@@ -7,23 +7,28 @@ using Weapons.Presentation;
 
 namespace Weapons.Domain.Weapon
 {
-    public class DefaultGun : IWeapon
+    public class Shotgun : IWeapon
     {
         private readonly WeaponProjectile _weaponProjectilePrefab;
         private readonly float _fireRate;
         private readonly float _baseDamage;
         private readonly float _speed;
         private readonly float _lifetime;
+        private readonly int _pelletCount;
+        private readonly float _spreadAngle;
 
         private float _cooldownTimer;
 
-        public DefaultGun(WeaponProjectile weaponProjectilePrefab, float fireRate, float damage, float speed, float lifetime)
+        public Shotgun(WeaponProjectile weaponProjectilePrefab, float fireRate, float damage, 
+            float speed, int pelletCount, float spreadAngle, float lifetime)
         {
             _weaponProjectilePrefab = weaponProjectilePrefab;
             _fireRate = fireRate;
             _baseDamage = damage;
             _speed = speed;
             _lifetime = lifetime;
+            _pelletCount = pelletCount;
+            _spreadAngle = spreadAngle;
         }
 
         public void Tick(float deltaTime)
@@ -35,8 +40,8 @@ namespace Weapons.Domain.Weapon
         public void Fire(Vector3 origin, Quaternion rotation, List<IProjectileModifier> modifiers)
         {
             if (_cooldownTimer > 0) return;
-
-            ProjectileData data = new ProjectileData
+            
+            ProjectileData baseData = new ProjectileData
             {
                 Damage = _baseDamage,
                 Speed = _speed,
@@ -46,12 +51,20 @@ namespace Weapons.Domain.Weapon
 
             foreach (var modifier in modifiers)
             {
-                data = modifier.ModifyStats(data);
+                baseData = modifier.ModifyStats(baseData);
             }
 
-            WeaponProjectile weaponProjectile = Object.Instantiate(_weaponProjectilePrefab, origin, rotation);
-            weaponProjectile.Initialize(data.Damage, data.Speed, data.Lifetime, modifiers);
-            weaponProjectile.transform.localScale *= data.Size;
+            for (int i = 0; i < _pelletCount; i++)
+            {
+                float currentAngle = Random.Range(-_spreadAngle / 2f, _spreadAngle / 2f);
+                
+                Quaternion spreadRotation = rotation * Quaternion.Euler(0, currentAngle, 0);
+
+                WeaponProjectile pellet = Object.Instantiate(_weaponProjectilePrefab, origin, spreadRotation);
+                
+                pellet.Initialize(baseData.Damage, baseData.Speed, baseData.Lifetime, modifiers);
+                pellet.transform.localScale *= baseData.Size;
+            }
 
             _cooldownTimer = 1f / _fireRate;
         }

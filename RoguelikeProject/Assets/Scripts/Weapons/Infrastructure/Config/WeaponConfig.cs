@@ -12,10 +12,11 @@ namespace Weapons.Infrastructure.Config
         [field: SerializeField] public float FireRate { get; private set; }
         [field: SerializeField] public float Damage { get; private set; }
         [field: SerializeField] public float Speed { get; private set; }
+        [field: SerializeField] public float BulletLifetime { get; private set; }
 
-        public IWeapon CreateWeapon()
+        public virtual IWeapon CreateWeapon()
         {
-            return new DefaultGun(WeaponProjectilePrefab, FireRate, Damage, Speed);
+            return new DefaultGun(WeaponProjectilePrefab, FireRate, Damage, Speed, BulletLifetime);
         }
     }
 }
