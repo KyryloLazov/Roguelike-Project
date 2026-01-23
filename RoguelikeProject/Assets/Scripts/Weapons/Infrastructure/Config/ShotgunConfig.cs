@@ -14,7 +14,7 @@ namespace Weapons.Infrastructure.Config
         
         public override IWeapon CreateWeapon()
         {
-            return new Shotgun(WeaponProjectilePrefab, FireRate, Damage, 
+            return new Shotgun(WeaponProjectilePrefab, BaseFireRate, Damage, 
                 Speed, PelletCount, SpreadAngle, BulletLifetime);
         }
     }

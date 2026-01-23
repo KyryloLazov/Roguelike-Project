@@ -17,7 +17,7 @@ namespace Player.Domain.PlayerStateMachine.States
         {
             float speed = _stateData.Stats.GetStat(StatType.Speed).Value;
 
-            var input = _stateData.MovementInput;
+            var input = _stateData.MovementInput.Value;
             var dir = PlayerMover.GetWorldMovementDirection(input);
 
             PlayerMover.Move(dir * speed);

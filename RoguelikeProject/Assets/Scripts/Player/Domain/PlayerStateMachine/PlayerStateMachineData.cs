@@ -6,7 +6,7 @@ namespace Player.Domain.PlayerStateMachine
 {
     public class PlayerStateMachineData
     {
-        public Vector2 MovementInput { get; set; }
+        public ReactiveProperty<Vector2> MovementInput = new();
         public ReactiveProperty<bool> DashRequested = new(false);
         public ReactiveProperty<bool> IsDashing = new();
         public ReactiveProperty<bool> IsStunned = new();

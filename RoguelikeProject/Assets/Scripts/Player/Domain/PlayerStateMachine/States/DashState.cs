@@ -22,7 +22,7 @@ namespace Player.Domain.PlayerStateMachine.States
             _stateData.IsDashing.Value = true;
             PlayerEvents.OnDashStarted.OnNext(UniRx.Unit.Default);
             
-            var input = _stateData.MovementInput;
+            var input = _stateData.MovementInput.Value;
             _dashDirection = PlayerMover.GetWorldMovementDirection(input);
 
             if (_dashDirection.sqrMagnitude < 0.01f)

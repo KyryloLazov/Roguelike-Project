@@ -39,7 +39,7 @@ namespace Player.Presentation
 
         private void Update()
         {
-            _stateData.MovementInput = _inputService.MovementInput;
+            _stateData.MovementInput.Value = _inputService.MovementInput;
 
             if (_stateData.DashCooldownTimer > 0f)
                 _stateData.DashCooldownTimer -= Time.deltaTime;

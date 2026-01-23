@@ -26,10 +26,10 @@ namespace Weapons.Domain.Weapon
             _lifetime = lifetime;
         }
 
-        public void Tick(float deltaTime)
+        public void Tick(float deltaTime, float fireRateMultiplier)
         {
             if (_cooldownTimer > 0)
-                _cooldownTimer -= deltaTime;
+                _cooldownTimer -= deltaTime * fireRateMultiplier;
         }
 
         public void Fire(Vector3 origin, Quaternion rotation, List<IProjectileModifier> modifiers)

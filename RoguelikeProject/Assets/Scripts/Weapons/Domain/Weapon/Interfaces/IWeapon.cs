@@ -7,6 +7,6 @@ namespace Weapons.Domain.Weapon.Interfaces
     public interface IWeapon
     {
         void Fire(Vector3 origin, Quaternion rotation, List<IProjectileModifier> modifiers);
-        void Tick(float deltaTime);
+        void Tick(float deltaTime, float fireRateMultiplier);
     }
 }

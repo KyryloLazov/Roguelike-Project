@@ -9,14 +9,14 @@ namespace Weapons.Infrastructure.Config
     public class WeaponConfig : ScriptableObject
     {
         [field: SerializeField] public WeaponProjectile WeaponProjectilePrefab { get; private set; }
-        [field: SerializeField] public float FireRate { get; private set; }
+        [field: SerializeField] public float BaseFireRate { get; private set; }
         [field: SerializeField] public float Damage { get; private set; }
         [field: SerializeField] public float Speed { get; private set; }
         [field: SerializeField] public float BulletLifetime { get; private set; }
 
         public virtual IWeapon CreateWeapon()
         {
-            return new DefaultGun(WeaponProjectilePrefab, FireRate, Damage, Speed, BulletLifetime);
+            return new DefaultGun(WeaponProjectilePrefab, BaseFireRate, Damage, Speed, BulletLifetime);
         }
     }
 }

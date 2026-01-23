@@ -19,7 +19,7 @@ namespace Player.Domain.PlayerStateMachine.Handlers
             return !_stateMachine.PlayerStateMachineData.IsDashing.Value 
                    && !_stateMachine.PlayerStateMachineData.IsDead.Value 
                    && !_stateMachine.PlayerStateMachineData.IsStunned.Value
-                   && _stateMachine.PlayerStateMachineData.MovementInput == Vector2.zero;
+                   && _stateMachine.PlayerStateMachineData.MovementInput.Value == Vector2.zero;
         }
 
         public void Handle()

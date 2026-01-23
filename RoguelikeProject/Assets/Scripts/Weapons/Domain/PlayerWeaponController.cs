@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using Player.Domain.Input;
+using Player.Domain.PlayerStats;
+using Player.Infrastructure.Config;
 using UnityEngine;
 using Weapons.Domain.Projectile.Interfaces;
 using Weapons.Domain.Weapon.Interfaces;
@@ -13,15 +15,17 @@ namespace Weapons.Domain
         [SerializeField] private Transform _firePoint; 
         
         private IInputService _inputService;
+        private IPlayerStatsProvider _statsProvider;
         private List<IProjectileModifier> _modifiers = new();
 
         private IWeapon _currentWeapon;
         
         [Inject]
-        public void Construct(IInputService inputService, WeaponConfig defaultConfig)
+        public void Construct(IInputService inputService, WeaponConfig defaultConfig, IPlayerStatsProvider statsProvider)
         {
             _inputService = inputService;
             _currentWeapon = defaultConfig.CreateWeapon();
+            _statsProvider = statsProvider;
         }
 
         public void EquipWeapon(IWeapon newWeapon)
@@ -37,8 +41,12 @@ namespace Weapons.Domain
         public void Update()
         {
             if (_currentWeapon == null) return;
-
-            _currentWeapon.Tick(Time.deltaTime);
+            
+            float playerFireRateMultiplier = _statsProvider.GetStat(StatType.FireRate).Value;
+            
+            if (playerFireRateMultiplier <= 0) playerFireRateMultiplier = 1f;
+            
+            _currentWeapon.Tick(Time.deltaTime, playerFireRateMultiplier);
 
             if (_inputService.IsFireHeld)
             {

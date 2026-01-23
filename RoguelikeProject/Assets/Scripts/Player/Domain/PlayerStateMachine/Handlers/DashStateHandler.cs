@@ -18,7 +18,7 @@ namespace Player.Domain.PlayerStateMachine.Handlers
         {
             return _stateMachine.PlayerStateMachineData.DashRequested.Value 
                    && _stateMachine.PlayerStateMachineData.DashCooldownTimer <= 0 
-                   && _stateMachine.PlayerStateMachineData.MovementInput != Vector2.zero;
+                   && _stateMachine.PlayerStateMachineData.MovementInput.Value != Vector2.zero;
         }
 
         public void Handle()
