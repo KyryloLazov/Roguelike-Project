@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 216678984}
   - component: {fileID: 216678983}
   - component: {fileID: 216678982}
+  - component: {fileID: 216678986}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
@@ -231,6 +232,38 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &216678986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 216678981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.AI.Navigation::Unity.AI.Navigation.NavMeshSurface
+  m_SerializedVersion: 0
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.16666667
+  m_MinRegionArea: 2
+  m_NavMeshData: {fileID: 23800000, guid: d16628be2e76a504899ffcc6189da602, type: 2}
+  m_BuildHeightMesh: 0
 --- !u!1 &249638948
 GameObject:
   m_ObjectHideFlags: 0
@@ -342,7 +375,7 @@ Transform:
   m_GameObject: {fileID: 249638948}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.20963, y: 0.94, z: 0.6288}
+  m_LocalPosition: {x: -0.20963, y: 1, z: 0.6288}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -883,6 +916,7 @@ GameObject:
   - component: {fileID: 958357725}
   - component: {fileID: 958357726}
   - component: {fileID: 958357727}
+  - component: {fileID: 958357728}
   m_Layer: 0
   m_Name: DI
   m_TagString: Untagged
@@ -920,6 +954,7 @@ MonoBehaviour:
   _scriptableObjectInstallers: []
   _monoInstallers:
   - {fileID: 958357727}
+  - {fileID: 958357728}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -953,6 +988,22 @@ MonoBehaviour:
   _playerMover: {fileID: 249638953}
   _startWeaponConfig: {fileID: 11400000, guid: 5e69cef496b1977499c3b3cd24569286, type: 2}
   _playerWeaponController: {fileID: 249638955}
+--- !u!114 &958357728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 958357724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab380b0d4d364bbd81e01f4f41e2b387, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DI.EnemyInstaller
+  _enemyConfig: {fileID: 11400000, guid: 112c7eabd6b88df419f7a4b12786a26b, type: 2}
+  wavesConfig: {fileID: 11400000, guid: b7ae9c212d03d884385b53149985b94f, type: 2}
+  _enemyPrefab: {fileID: 1473830649767516555, guid: 5dbb2f969cfdeb54bb95e8e8d86d3c20, type: 3}
+  _playerTransform: {fileID: 249638952}
 --- !u!1 &964790824
 GameObject:
   m_ObjectHideFlags: 0
@@ -1015,6 +1066,7 @@ Transform:
   m_Children:
   - {fileID: 958357725}
   - {fileID: 500859922}
+  - {fileID: 1985481163}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1740926793
@@ -1231,6 +1283,37 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1985481162
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1985481163}
+  m_Layer: 0
+  m_Name: WavesController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1985481163
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1985481162}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1657954703}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2139486987
 GameObject:
