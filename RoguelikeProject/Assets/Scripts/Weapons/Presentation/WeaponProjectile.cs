@@ -48,8 +48,14 @@ namespace Weapons.Presentation
 
         private void OnTriggerEnter(Collider other)
         {
-            // Damage();
-            
+            if (other.TryGetComponent(out IDamageable damageable))
+            {
+                if (!other.CompareTag("Player"))
+                {
+                    damageable.TakeDamage(_damage);
+                }
+            }
+
             foreach (var effect in _effects)
             {
                 effect.OnHit(this, other.gameObject, transform.position);

@@ -6,13 +6,13 @@ using Zenject;
 
 namespace Enemy.Presentation
 {
-    public class EnemyEntity : MonoBehaviour, IPoolable<EnemyStats, IMemoryPool>
+    public class EnemyEntity : MonoBehaviour, IPoolable<EnemyStats>, IDamageable
     {
         private NavMeshAgent _agent;
         private Transform _target; 
         private EnemyStats _stats;
         private float _currentHealth;
-        private IMemoryPool _pool;
+        [Inject] private EnemyPool _pool;
         
         public event Action<EnemyEntity> OnDeath;
 
@@ -23,9 +23,8 @@ namespace Enemy.Presentation
             _agent.updateUpAxis = false;
         }
         
-        public void OnSpawned(EnemyStats stats, IMemoryPool pool)
+        public void OnSpawned(EnemyStats stats)
         {
-            _pool = pool;
             _stats = stats;
             _currentHealth = _stats.Health;
             _agent.speed = _stats.Speed;
@@ -35,7 +34,6 @@ namespace Enemy.Presentation
         
         public void OnDespawned()
         {
-            _pool = null;
             OnDeath = null;
             gameObject.SetActive(false);
         }

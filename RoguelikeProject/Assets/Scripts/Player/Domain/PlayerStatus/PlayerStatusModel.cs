@@ -33,7 +33,7 @@ namespace Player.Domain.PlayerStatus
                 .AddTo(_disposables);
         }
 
-        public void TakeDamage(int amount)
+        public void TakeDamage(float amount)
         {
             int maxHealth = Mathf.CeilToInt(_statsProvider.GetStat(StatType.MaxHealth).Value);
             UnityEngine.Debug.Log($"Trying to changing Health from {_currentHealth.Value} to {_currentHealth.Value - amount}");
@@ -41,7 +41,7 @@ namespace Player.Domain.PlayerStatus
             _playerEvents.OnDamageTaken.OnNext(CurrentHealth.Value);
         }
 
-        public void Heal(int amount)
+        public void Heal(float amount)
         {
             TakeDamage(-amount);
             _playerEvents.OnDamageTaken.OnNext(CurrentHealth.Value);
