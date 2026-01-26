@@ -1,12 +1,11 @@
 using Enemy.Presentation;
 using UnityEngine;
+using UnityEngine.AI;
 using Zenject;
 
 namespace Enemy.Domain
 {
-    public class EnemyPool : MonoMemoryPool<EnemyStats, EnemyEntity>
-    {
-    }
+    public class EnemyPool : MonoMemoryPool<EnemyEntity> { }
 
     public class EnemySpawner
     {
@@ -19,8 +18,20 @@ namespace Enemy.Domain
 
         public EnemyEntity Spawn(EnemyStats stats, Vector3 position)
         {
-            EnemyEntity enemy = _pool.Spawn(stats);
-            enemy.transform.position = position;
+            EnemyEntity enemy = _pool.Spawn();
+            var agent = enemy.GetComponent<NavMeshAgent>();
+            
+            if (NavMesh.SamplePosition(position, out NavMeshHit hit, 5.0f, NavMesh.AllAreas))
+            {
+                agent.Warp(hit.position);
+            }
+            else
+            {
+                UnityEngine.Debug.LogWarning($"Could not find NavMesh near {position}. Spawning at original position (might fail).");
+                agent.Warp(position);
+            }
+
+            enemy.Initialize(stats);
             return enemy;
         }
     }

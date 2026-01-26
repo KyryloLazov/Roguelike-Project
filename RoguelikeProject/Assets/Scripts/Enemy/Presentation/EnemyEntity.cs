@@ -6,7 +6,7 @@ using Zenject;
 
 namespace Enemy.Presentation
 {
-    public class EnemyEntity : MonoBehaviour, IPoolable<EnemyStats>, IDamageable
+    public class EnemyEntity : MonoBehaviour, IDamageable
     {
         private NavMeshAgent _agent;
         private Transform _target; 
@@ -23,12 +23,13 @@ namespace Enemy.Presentation
             _agent.updateUpAxis = false;
         }
         
-        public void OnSpawned(EnemyStats stats)
+        public void Initialize(EnemyStats stats)
         {
             _stats = stats;
             _currentHealth = _stats.Health;
             _agent.speed = _stats.Speed;
-            
+        
+            UnityEngine.Debug.Log($"Initialized enemy. HP: {_currentHealth}");
             gameObject.SetActive(true);
         }
         
@@ -45,15 +46,15 @@ namespace Enemy.Presentation
 
         private void Update()
         {
-            if (_target != null)
+            if (_target == null || !_agent.isOnNavMesh) return;
+            
+            _agent.SetDestination(_target.position);
+            
+            if (_agent.velocity.sqrMagnitude > 0.1f)
             {
-                _agent.SetDestination(_target.position);
-                
-                if (_agent.velocity.sqrMagnitude > 0.1f)
-                {
-                    transform.rotation = Quaternion.LookRotation(_agent.velocity.normalized);
-                }
+                transform.rotation = Quaternion.LookRotation(_agent.velocity.normalized);
             }
+
         }
 
         public void TakeDamage(float amount)
