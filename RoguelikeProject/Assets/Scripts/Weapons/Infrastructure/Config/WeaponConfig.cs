@@ -1,4 +1,5 @@
 using UnityEngine;
+using Weapons.Domain.Pool;
 using Weapons.Domain.Weapon;
 using Weapons.Domain.Weapon.Interfaces;
 using Weapons.Presentation;
@@ -14,9 +15,9 @@ namespace Weapons.Infrastructure.Config
         [field: SerializeField] public float Speed { get; private set; }
         [field: SerializeField] public float BulletLifetime { get; private set; }
 
-        public virtual IWeapon CreateWeapon()
+        public virtual IWeapon CreateWeapon(WeaponProjectilePool pool)
         {
-            return new DefaultGun(WeaponProjectilePrefab, BaseFireRate, Damage, Speed, BulletLifetime);
+            return new DefaultGun(WeaponProjectilePrefab, BaseFireRate, Damage, Speed, BulletLifetime, pool);
         }
     }
 }

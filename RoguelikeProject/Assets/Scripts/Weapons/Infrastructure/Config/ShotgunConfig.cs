@@ -1,4 +1,5 @@
 using UnityEngine;
+using Weapons.Domain.Pool;
 using Weapons.Domain.Weapon;
 using Weapons.Domain.Weapon.Interfaces;
 using Weapons.Presentation;
@@ -12,10 +13,10 @@ namespace Weapons.Infrastructure.Config
         [field: SerializeField] public int PelletCount { get; private set; } = 5;
         [field: SerializeField] public float SpreadAngle { get; private set; } = 30f;
         
-        public override IWeapon CreateWeapon()
+        public override IWeapon CreateWeapon(WeaponProjectilePool pool)
         {
             return new Shotgun(WeaponProjectilePrefab, BaseFireRate, Damage, 
-                Speed, PelletCount, SpreadAngle, BulletLifetime);
+                Speed, PelletCount, SpreadAngle, BulletLifetime, pool);
         }
     }
 }

@@ -1,4 +1,5 @@
 using ItemSystem.Infrastructure.Config;
+using Weapons.Domain.Pool;
 using Weapons.Domain.Weapon.Interfaces;
 
 namespace ItemSystem.Domain
@@ -26,8 +27,7 @@ namespace ItemSystem.Domain
         
         private void Equip()
         {
-            IWeapon weapon = _config.WeaponConfig.CreateWeapon();
-            Context.Weapons.EquipWeapon(weapon);
+            Context.Weapons.EquipWeapon(_config.WeaponConfig);
         }
     }
 }

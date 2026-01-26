@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Weapons.Domain.Pool;
 using Weapons.Domain.Projectile.Interfaces;
 
 namespace Weapons.Domain.Weapon.Interfaces

@@ -3,6 +3,7 @@ using Player.Domain.Input;
 using Player.Domain.PlayerStats;
 using Player.Infrastructure.Config;
 using UnityEngine;
+using Weapons.Domain.Pool;
 using Weapons.Domain.Projectile.Interfaces;
 using Weapons.Domain.Weapon.Interfaces;
 using Weapons.Infrastructure.Config;
@@ -17,20 +18,28 @@ namespace Weapons.Domain
         private IInputService _inputService;
         private IPlayerStatsProvider _statsProvider;
         private List<IProjectileModifier> _modifiers = new();
+        private WeaponProjectilePool _pool;
 
         private IWeapon _currentWeapon;
         
         [Inject]
-        public void Construct(IInputService inputService, WeaponConfig defaultConfig, IPlayerStatsProvider statsProvider)
+        public void Construct(IInputService inputService, WeaponConfig defaultConfig, IPlayerStatsProvider statsProvider,
+            WeaponProjectilePool pool)
         {
             _inputService = inputService;
-            _currentWeapon = defaultConfig.CreateWeapon();
+            _pool = pool;
+            _currentWeapon = defaultConfig.CreateWeapon(_pool);
             _statsProvider = statsProvider;
         }
 
         public void EquipWeapon(IWeapon newWeapon)
         {
             _currentWeapon = newWeapon;
+        }        
+        
+        public void EquipWeapon(WeaponConfig config)
+        {
+            _currentWeapon = config.CreateWeapon(_pool);
         }
 
         public void AddModifier(IProjectileModifier modifier)

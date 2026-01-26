@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Weapons.Domain.Pool;
 using Weapons.Domain.Projectile.Interfaces;
 
 namespace Weapons.Presentation
@@ -11,6 +12,14 @@ namespace Weapons.Presentation
         private float _lifetime;
         
         private List<IProjectileModifier> _effects = new();
+        private WeaponProjectilePool _pool;
+        private WeaponProjectile _originalPrefab;
+        
+        public void SetPoolService(WeaponProjectilePool pool, WeaponProjectile prefab)
+        {
+            _pool = pool;
+            _originalPrefab = prefab;
+        }
 
         public void Initialize(float damage, float speed, float lifetime, List<IProjectileModifier> effects)
         {
@@ -18,13 +27,18 @@ namespace Weapons.Presentation
             _speed = speed;
             _lifetime = lifetime;
             _effects = effects ?? new List<IProjectileModifier>();
-            
-            Destroy(gameObject, _lifetime);
         }
 
         private void Update()
         {
             transform.Translate(Vector3.forward * (_speed * Time.deltaTime));
+            
+            _lifetime -= Time.deltaTime;
+            if (_lifetime <= 0)
+            {
+                ReturnToPool();
+                return;
+            }
             
             for (int i = 0; i < _effects.Count; i++)
             {
@@ -41,7 +55,19 @@ namespace Weapons.Presentation
                 effect.OnHit(this, other.gameObject, transform.position);
             }
 
-            Destroy(gameObject);
+            ReturnToPool();
+        }
+        
+        private void ReturnToPool()
+        {
+            if (_pool != null)
+            {
+                _pool.Despawn(this, _originalPrefab);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

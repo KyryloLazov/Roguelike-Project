@@ -11,6 +11,7 @@ using Player.Infrastructure.Config;
 using Player.Presentation;
 using UnityEngine;
 using Weapons.Domain;
+using Weapons.Domain.Pool;
 using Weapons.Infrastructure.Config;
 
 namespace DI
@@ -41,6 +42,7 @@ namespace DI
             
             Container.BindInstance(_startWeaponConfig);
             Container.BindInstance(_playerWeaponController);
+            BindNewInstance<WeaponProjectilePool>();
             
             BindNewInstance<PlayerEvents>();
             BindNewInstance<PlayerContext>();

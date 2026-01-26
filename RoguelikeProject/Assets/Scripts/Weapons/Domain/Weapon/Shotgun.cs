@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Weapons.Domain.Pool;
 using Weapons.Domain.Projectile;
 using Weapons.Domain.Projectile.Interfaces;
 using Weapons.Domain.Weapon.Interfaces;
@@ -10,6 +11,7 @@ namespace Weapons.Domain.Weapon
     public class Shotgun : IWeapon
     {
         private readonly WeaponProjectile _weaponProjectilePrefab;
+        private readonly WeaponProjectilePool _pool;
         private readonly float _fireRate;
         private readonly float _baseDamage;
         private readonly float _speed;
@@ -20,7 +22,7 @@ namespace Weapons.Domain.Weapon
         private float _cooldownTimer;
 
         public Shotgun(WeaponProjectile weaponProjectilePrefab, float fireRate, float damage, 
-            float speed, int pelletCount, float spreadAngle, float lifetime)
+            float speed, int pelletCount, float spreadAngle, float lifetime, WeaponProjectilePool pool)
         {
             _weaponProjectilePrefab = weaponProjectilePrefab;
             _fireRate = fireRate;
@@ -29,6 +31,7 @@ namespace Weapons.Domain.Weapon
             _lifetime = lifetime;
             _pelletCount = pelletCount;
             _spreadAngle = spreadAngle;
+            _pool = pool;
         }
 
         public void Tick(float deltaTime, float fireRateMultiplier)
@@ -60,7 +63,7 @@ namespace Weapons.Domain.Weapon
                 
                 Quaternion spreadRotation = rotation * Quaternion.Euler(0, currentAngle, 0);
 
-                WeaponProjectile pellet = Object.Instantiate(_weaponProjectilePrefab, origin, spreadRotation);
+                WeaponProjectile pellet = _pool.Spawn(_weaponProjectilePrefab, origin, rotation);
                 
                 pellet.Initialize(baseData.Damage, baseData.Speed, baseData.Lifetime, modifiers);
                 pellet.transform.localScale *= baseData.Size;
