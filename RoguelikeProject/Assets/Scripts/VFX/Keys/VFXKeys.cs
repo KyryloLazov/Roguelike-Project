@@ -12,5 +12,5 @@ public static class VFXKeys
     public static readonly string UIButtonClick = "UIButtonClick";
     
     public static readonly string Shake = "Shake";
-    public static readonly string DustEffect= "DustEffect";
+    public static readonly string DustEffect= "Dust";
 }
