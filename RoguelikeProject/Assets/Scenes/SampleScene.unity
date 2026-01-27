@@ -1866,6 +1866,8 @@ GameObject:
   - component: {fileID: 958357727}
   - component: {fileID: 958357728}
   - component: {fileID: 958357729}
+  - component: {fileID: 958357730}
+  - component: {fileID: 958357731}
   m_Layer: 0
   m_Name: DI
   m_TagString: Untagged
@@ -1905,6 +1907,8 @@ MonoBehaviour:
   - {fileID: 958357727}
   - {fileID: 958357728}
   - {fileID: 958357729}
+  - {fileID: 958357730}
+  - {fileID: 958357731}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -1970,6 +1974,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DI.UIInstaller
   _playerHUDView: {fileID: 768059807}
   _gameOverView: {fileID: 450038749}
+--- !u!114 &958357730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 958357724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 926e90ea76ba4238818a7a41cdbb4485, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DI.VFXInstaller
+  _vfxManager: {fileID: 1708687544}
+  _vfxConfig: {fileID: 11400000, guid: e4cbe048271bf684ca0d914bd79b06b8, type: 2}
+--- !u!114 &958357731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 958357724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 882a89b872f0432e92f9e3d270ded759, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DI.AudioInstaller
+  _audioHub: {fileID: 1317791776}
+  _audioConfig: {fileID: 11400000, guid: 6f9be68ac3b051642a94e5b6925b9c9b, type: 2}
 --- !u!1 &964790824
 GameObject:
   m_ObjectHideFlags: 0
@@ -2365,6 +2397,79 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1269311568}
   m_CullTransparentMesh: 1
+--- !u!1001 &1317791774
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1657954703}
+    m_Modifications:
+    - target: {fileID: 1401103273939783101, guid: 86f2ebc0c5beef24fb60da4952a8faf7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1401103273939783101, guid: 86f2ebc0c5beef24fb60da4952a8faf7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1401103273939783101, guid: 86f2ebc0c5beef24fb60da4952a8faf7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1401103273939783101, guid: 86f2ebc0c5beef24fb60da4952a8faf7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1401103273939783101, guid: 86f2ebc0c5beef24fb60da4952a8faf7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1401103273939783101, guid: 86f2ebc0c5beef24fb60da4952a8faf7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1401103273939783101, guid: 86f2ebc0c5beef24fb60da4952a8faf7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1401103273939783101, guid: 86f2ebc0c5beef24fb60da4952a8faf7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1401103273939783101, guid: 86f2ebc0c5beef24fb60da4952a8faf7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1401103273939783101, guid: 86f2ebc0c5beef24fb60da4952a8faf7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3424110795074739430, guid: 86f2ebc0c5beef24fb60da4952a8faf7, type: 3}
+      propertyPath: m_Name
+      value: Audio
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 86f2ebc0c5beef24fb60da4952a8faf7, type: 3}
+--- !u!4 &1317791775 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1401103273939783101, guid: 86f2ebc0c5beef24fb60da4952a8faf7, type: 3}
+  m_PrefabInstance: {fileID: 1317791774}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1317791776 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 365571838508651492, guid: 86f2ebc0c5beef24fb60da4952a8faf7, type: 3}
+  m_PrefabInstance: {fileID: 1317791774}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2bed43cc8324b659d2b09d4982ce8bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AudioHub
 --- !u!1 &1360391707
 GameObject:
   m_ObjectHideFlags: 0
@@ -2436,8 +2541,54 @@ Transform:
   - {fileID: 2018352505}
   - {fileID: 768059806}
   - {fileID: 450038748}
+  - {fileID: 1708687543}
+  - {fileID: 1317791775}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1708687542
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1708687543}
+  - component: {fileID: 1708687544}
+  m_Layer: 0
+  m_Name: VFXManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1708687543
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1708687542}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1657954703}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1708687544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1708687542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60fcaeaf9622463abf9f347673627a4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VFXManager
 --- !u!1 &1740926793
 GameObject:
   m_ObjectHideFlags: 0

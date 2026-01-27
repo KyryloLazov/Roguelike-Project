@@ -14,15 +14,17 @@ namespace Entrypoint
         private GamePhaseService _gamePhaseService;
         private PlayerHUDPresenter _hud;
         private GameOverPresenter _gameOver;
+        private AudioHub _audioHub;
 
         [Inject]
         private void Construct(InitializationPlayerStateMachine fsm, GamePhaseService gamePhaseService,
-            PlayerHUDPresenter hud, GameOverPresenter gameOver)
+            PlayerHUDPresenter hud, GameOverPresenter gameOver, AudioHub audioHub)
         {
             _fsm = fsm;
             _gamePhaseService = gamePhaseService;
             _hud = hud;
             _gameOver = gameOver;
+            _audioHub = audioHub;
         }
 
         private void Start()
@@ -31,6 +33,7 @@ namespace Entrypoint
             _gamePhaseService.Initialize();
             _hud.Initialize();
             _gameOver.Initialize();
+            _audioHub.Init();
         }
 
         private void Update()

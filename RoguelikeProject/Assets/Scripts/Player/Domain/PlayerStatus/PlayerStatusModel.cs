@@ -17,14 +17,16 @@ namespace Player.Domain.PlayerStatus
         private readonly IPlayerStatsProvider _statsProvider;
         private readonly PlayerEvents _playerEvents;
         private readonly PlayerStateMachineData _playerStateMachineData;
+        private readonly AudioHub _audioHub;
         private readonly CompositeDisposable _disposables = new();
 
         public PlayerStatusModel(IPlayerStatsProvider statsProvider, PlayerEvents playerEvents,
-            PlayerStateMachineData playerStateMachineData)
+            PlayerStateMachineData playerStateMachineData, AudioHub audioHub)
         {
             _statsProvider = statsProvider;
             _playerEvents = playerEvents;
             _playerStateMachineData = playerStateMachineData;
+            _audioHub = audioHub;
 
             int maxHealth = Mathf.CeilToInt(_statsProvider.GetStat(StatType.MaxHealth).Value);
             _currentHealth = new ReactiveProperty<float>(maxHealth);
@@ -44,6 +46,9 @@ namespace Player.Domain.PlayerStatus
             {
                 return;
             }
+
+            string soundKey = amount > 0 ? "Hit" : "Heal";
+            _audioHub.PlaySFX(soundKey);
             
             int maxHealth = Mathf.CeilToInt(_statsProvider.GetStat(StatType.MaxHealth).Value);
             UnityEngine.Debug.Log($"Trying to changing Health from {_currentHealth.Value} to {_currentHealth.Value - amount}");
@@ -54,7 +59,6 @@ namespace Player.Domain.PlayerStatus
         public void Heal(float amount)
         {
             TakeDamage(-amount);
-            _playerEvents.OnDamageTaken.OnNext(CurrentHealth.Value);
         }
 
         public void Dispose() => _disposables.Dispose();

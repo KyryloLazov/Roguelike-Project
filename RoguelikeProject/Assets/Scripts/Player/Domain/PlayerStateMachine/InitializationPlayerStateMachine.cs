@@ -10,17 +10,21 @@ namespace Player.Domain.PlayerStateMachine
         public PlayerStateMachineData PlayerStateMachineData { get; private set; }
         public PlayerMover PlayerMover { get; private set; }
         public PlayerEvents PlayerEvents { get; private set; }
+        public VFXManager VFXManager { get; private set; }
+        public AudioHub AudioHub { get; private set; }
 
         private IdleState _idleState;
         private MovementState _movementState;
         private DashState _dashState;
 
         public InitializationPlayerStateMachine(PlayerMover mover, PlayerStateMachineData playerStateMachineData, 
-            PlayerEvents playerEvents)
+            PlayerEvents playerEvents, VFXManager vfxManager, AudioHub audioHub)
         {
             PlayerMover = mover;
             PlayerStateMachineData = playerStateMachineData;
             PlayerEvents = playerEvents;
+            VFXManager = vfxManager;
+            AudioHub = audioHub;
         }
 
         public void Initialize()

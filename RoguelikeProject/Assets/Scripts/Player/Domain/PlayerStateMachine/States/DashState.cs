@@ -19,10 +19,11 @@ namespace Player.Domain.PlayerStateMachine.States
 
         public override void OnEnter()
         {
-            _stateData.IsDashing.Value = true;
+            StateData.IsDashing.Value = true;
             PlayerEvents.OnDashStarted.OnNext(UniRx.Unit.Default);
+            StateMachine.VFXManager.PlayEffect(VFXKeys.DustEffect, PlayerMover.transform.position);
             
-            var input = _stateData.MovementInput.Value;
+            var input = StateData.MovementInput.Value;
             _dashDirection = PlayerMover.GetWorldMovementDirection(input);
 
             if (_dashDirection.sqrMagnitude < 0.01f)
@@ -37,13 +38,13 @@ namespace Player.Domain.PlayerStateMachine.States
         {
             await UniTask.WaitForSeconds(0.2f);
 
-            _stateData.IsDashing.Value = false;
-            _stateData.DashCooldownTimer = 1.0f;
+            StateData.IsDashing.Value = false;
+            StateData.DashCooldownTimer = 1.0f;
         }
 
         public override void FixedUpdate()
         {
-            float baseSpeed = _stateData.Stats.GetStat(StatType.Speed).Value;
+            float baseSpeed = StateData.Stats.GetStat(StatType.Speed).Value;
             float dashSpeed = baseSpeed * 6f;
             
             var velocity = _dashDirection * dashSpeed;

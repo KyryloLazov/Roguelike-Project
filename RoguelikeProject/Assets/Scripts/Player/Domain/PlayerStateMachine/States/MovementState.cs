@@ -15,9 +15,9 @@ namespace Player.Domain.PlayerStateMachine.States
 
         public override void FixedUpdate()
         {
-            float speed = _stateData.Stats.GetStat(StatType.Speed).Value;
+            float speed = StateData.Stats.GetStat(StatType.Speed).Value;
 
-            var input = _stateData.MovementInput.Value;
+            var input = StateData.MovementInput.Value;
             var dir = PlayerMover.GetWorldMovementDirection(input);
 
             PlayerMover.Move(dir * speed);

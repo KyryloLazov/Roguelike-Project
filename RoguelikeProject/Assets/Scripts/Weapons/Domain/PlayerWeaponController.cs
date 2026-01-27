@@ -19,17 +19,19 @@ namespace Weapons.Domain
         private IPlayerStatsProvider _statsProvider;
         private List<IProjectileModifier> _modifiers = new();
         private WeaponProjectilePool _pool;
+        private AudioHub _audioHub;
 
         private IWeapon _currentWeapon;
         
         [Inject]
         public void Construct(IInputService inputService, WeaponConfig defaultConfig, IPlayerStatsProvider statsProvider,
-            WeaponProjectilePool pool)
+            WeaponProjectilePool pool, AudioHub audioHub)
         {
             _inputService = inputService;
             _pool = pool;
             _statsProvider = statsProvider;
             _currentWeapon = defaultConfig.CreateWeapon(_pool, _statsProvider);
+            _audioHub = audioHub;
         }
 
         public void EquipWeapon(IWeapon newWeapon)
@@ -60,6 +62,7 @@ namespace Weapons.Domain
             if (_inputService.IsFireHeld)
             {
                 _currentWeapon.Fire(_firePoint.position, _firePoint.rotation, _modifiers);
+                _audioHub.PlaySFX("Fire");
             }
         }
     }

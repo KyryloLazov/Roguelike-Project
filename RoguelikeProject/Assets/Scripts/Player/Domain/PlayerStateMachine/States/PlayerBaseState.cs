@@ -6,16 +6,16 @@ namespace Player.Domain.PlayerStateMachine.States
 {
     public abstract class PlayerBaseState : IState
     {
-        protected readonly InitializationPlayerStateMachine _stateMachine;
-        protected readonly PlayerStateMachineData _stateData;
+        protected readonly InitializationPlayerStateMachine StateMachine;
+        protected readonly PlayerStateMachineData StateData;
         protected readonly PlayerMover PlayerMover;
         protected readonly PlayerEvents PlayerEvents;
 
         protected PlayerBaseState(InitializationPlayerStateMachine stateMachine, PlayerStateMachineData stateData, 
             PlayerMover mover, PlayerEvents playerEvents)
         {
-            _stateMachine = stateMachine;
-            _stateData = stateData;
+            StateMachine = stateMachine;
+            StateData = stateData;
             PlayerMover = mover;
             PlayerEvents = playerEvents;
         }
