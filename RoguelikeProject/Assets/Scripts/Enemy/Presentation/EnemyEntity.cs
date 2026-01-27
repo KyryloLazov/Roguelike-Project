@@ -66,6 +66,14 @@ namespace Enemy.Presentation
             }
         }
 
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("Player"))
+            {
+                other.GetComponent<IDamageable>().TakeDamage(_stats.Damage);
+            }
+        }
+
         private void Die()
         {
             OnDeath?.Invoke(this);

@@ -1,4 +1,7 @@
+using Gameflow.Domain;
+using Gameflow.Presentation;
 using ItemSystem.Domain;
+using ItemSystem.Infrastructure.Config;
 using Player.Domain.Events;
 using Player.Domain.Input;
 using Player.Domain.Items.Player.Domain.Items;
@@ -22,6 +25,8 @@ namespace DI
         [SerializeField] private PlayerMover _playerMover;
         [SerializeField] private WeaponConfig _startWeaponConfig;
         [SerializeField] private PlayerWeaponController _playerWeaponController;
+        [SerializeField] private ItemDatabaseConfig _itemDatabase;
+        [SerializeField] private RewardUI _rewardUI;
 
         public override void InstallBindings()
         {
@@ -47,6 +52,13 @@ namespace DI
             BindNewInstance<PlayerEvents>();
             BindNewInstance<PlayerContext>();
             BindNewInstance<InventoryController>();
+            
+            Container.BindInstance(_itemDatabase);
+            Container.Bind<RewardService>().AsSingle();
+            
+            Container.BindInstance(_rewardUI);
+             
+            Container.BindInterfacesAndSelfTo<GamePhaseService>().AsSingle().NonLazy();
         }
     }
 }

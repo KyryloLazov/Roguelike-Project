@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using Player.Domain.PlayerStats;
+using Player.Infrastructure.Config;
 using UnityEngine;
 using Weapons.Domain.Pool;
 using Weapons.Domain.Projectile;
@@ -16,11 +18,12 @@ namespace Weapons.Domain.Weapon
         private readonly float _baseDamage;
         private readonly float _speed;
         private readonly float _lifetime;
+        private readonly IPlayerStatsProvider _playerStatsProvider;
 
         private float _cooldownTimer;
         
         public DefaultGun(WeaponProjectile weaponProjectilePrefab, float fireRate, float damage, float speed, 
-            float lifetime, WeaponProjectilePool pool)
+            float lifetime, WeaponProjectilePool pool, IPlayerStatsProvider stats)
         {
             _weaponProjectilePrefab = weaponProjectilePrefab;
             _fireRate = fireRate;
@@ -28,12 +31,17 @@ namespace Weapons.Domain.Weapon
             _speed = speed;
             _lifetime = lifetime;
             _pool = pool;
+            _playerStatsProvider = stats;
         }
 
-        public void Tick(float deltaTime, float fireRateMultiplier)
+        public void Tick(float deltaTime)
         {
+            float playerFireRateMultiplier = _playerStatsProvider.GetStat(StatType.FireRate).Value;
+            
+            if (playerFireRateMultiplier <= 0) playerFireRateMultiplier = 1f;
+            
             if (_cooldownTimer > 0)
-                _cooldownTimer -= deltaTime * fireRateMultiplier;
+                _cooldownTimer -= deltaTime * playerFireRateMultiplier;
         }
 
         public void Fire(Vector3 origin, Quaternion rotation, List<IProjectileModifier> modifiers)
@@ -42,7 +50,7 @@ namespace Weapons.Domain.Weapon
 
             ProjectileData data = new ProjectileData
             {
-                Damage = _baseDamage,
+                Damage = _baseDamage * _playerStatsProvider.GetStat(StatType.Damage).Value,
                 Speed = _speed,
                 Lifetime = _lifetime,
                 Size = 1f

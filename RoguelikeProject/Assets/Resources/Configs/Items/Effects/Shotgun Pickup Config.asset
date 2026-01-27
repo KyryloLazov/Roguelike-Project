@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca914ad39ebb4a48b3e3387e4a0dc48b, type: 3}
   m_Name: Shotgun Pickup Config
   m_EditorClassIdentifier: Assembly-CSharp::ItemSystem.Infrastructure.Config.WeaponPickupConfig
-  WeaponConfig: {fileID: 11400000, guid: 3299b4dd7d812e044aaacfadd1630769, type: 2}
+  <WeaponConfig>k__BackingField: {fileID: 11400000, guid: 3299b4dd7d812e044aaacfadd1630769, type: 2}

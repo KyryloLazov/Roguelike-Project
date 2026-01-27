@@ -19,7 +19,7 @@ namespace Enemy.Infrastructure.Config
                     return Mathf.Min(1f + Factor * (wave - 1), MaxMultiplier);
 
                 case ScaleMode.Exponential:
-                    float exp = Mathf.Pow(Factor, wave - 1);
+                    float exp = Mathf.Pow(1f + Factor, wave - 1);
                     return Mathf.Min(exp, MaxMultiplier);
 
                 case ScaleMode.Logistic:

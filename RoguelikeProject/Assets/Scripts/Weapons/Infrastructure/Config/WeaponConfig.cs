@@ -1,3 +1,4 @@
+using Player.Domain.PlayerStats;
 using UnityEngine;
 using Weapons.Domain.Pool;
 using Weapons.Domain.Weapon;
@@ -11,13 +12,13 @@ namespace Weapons.Infrastructure.Config
     {
         [field: SerializeField] public WeaponProjectile WeaponProjectilePrefab { get; private set; }
         [field: SerializeField] public float BaseFireRate { get; private set; }
-        [field: SerializeField] public float Damage { get; private set; }
+        [field: SerializeField] public float BaseDamage { get; private set; }
         [field: SerializeField] public float Speed { get; private set; }
         [field: SerializeField] public float BulletLifetime { get; private set; }
 
-        public virtual IWeapon CreateWeapon(WeaponProjectilePool pool)
+        public virtual IWeapon CreateWeapon(WeaponProjectilePool pool, IPlayerStatsProvider stats)
         {
-            return new DefaultGun(WeaponProjectilePrefab, BaseFireRate, Damage, Speed, BulletLifetime, pool);
+            return new DefaultGun(WeaponProjectilePrefab, BaseFireRate, BaseDamage, Speed, BulletLifetime, pool, stats);
         }
     }
 }

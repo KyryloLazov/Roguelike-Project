@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e832ee59ad144a23a0293dcc4899f6be, type: 3}
-  m_Name: Coffee
+  m_Name: Damage
   m_EditorClassIdentifier: Assembly-CSharp::ItemSystem.Infrastructure.Config.ItemConfig
-  <Id>k__BackingField: item_coffee
-  <Name>k__BackingField: Cofee
-  <Description>k__BackingField: More speed
+  <Id>k__BackingField: item_damage
+  <Name>k__BackingField: Damage
+  <Description>k__BackingField: More damage
   <Icon>k__BackingField: {fileID: 0}
   <Effects>k__BackingField:
-  - {fileID: 11400000, guid: b1291759c7b594146b2f3e5d9f4743fe, type: 2}
+  - {fileID: 11400000, guid: b5765346c79c46942890e3f9e117553c, type: 2}

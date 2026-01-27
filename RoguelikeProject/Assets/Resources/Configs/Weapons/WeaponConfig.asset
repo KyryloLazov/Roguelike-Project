@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Weapons.Infrastructure.Config.WeaponConfig
   <WeaponProjectilePrefab>k__BackingField: {fileID: 6783880630654509516, guid: 76436e52f82cd124bba58a1171be99e9, type: 3}
   <BaseFireRate>k__BackingField: 5
-  <Damage>k__BackingField: 10
+  <BaseDamage>k__BackingField: 10
   <Speed>k__BackingField: 10
   <BulletLifetime>k__BackingField: 4

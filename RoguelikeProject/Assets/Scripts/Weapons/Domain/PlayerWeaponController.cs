@@ -28,8 +28,8 @@ namespace Weapons.Domain
         {
             _inputService = inputService;
             _pool = pool;
-            _currentWeapon = defaultConfig.CreateWeapon(_pool);
             _statsProvider = statsProvider;
+            _currentWeapon = defaultConfig.CreateWeapon(_pool, _statsProvider);
         }
 
         public void EquipWeapon(IWeapon newWeapon)
@@ -39,7 +39,7 @@ namespace Weapons.Domain
         
         public void EquipWeapon(WeaponConfig config)
         {
-            _currentWeapon = config.CreateWeapon(_pool);
+            _currentWeapon = config.CreateWeapon(_pool, _statsProvider);
         }
 
         public void AddModifier(IProjectileModifier modifier)
@@ -55,7 +55,7 @@ namespace Weapons.Domain
             
             if (playerFireRateMultiplier <= 0) playerFireRateMultiplier = 1f;
             
-            _currentWeapon.Tick(Time.deltaTime, playerFireRateMultiplier);
+            _currentWeapon.Tick(Time.deltaTime);
 
             if (_inputService.IsFireHeld)
             {

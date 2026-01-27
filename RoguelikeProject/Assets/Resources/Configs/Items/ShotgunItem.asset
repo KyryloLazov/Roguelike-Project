@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ShotgunItem
   m_EditorClassIdentifier: Assembly-CSharp::ItemSystem.Infrastructure.Config.ItemConfig
   <Id>k__BackingField: item_shotgun
-  <Name>k__BackingField: Cofee
+  <Name>k__BackingField: Shotgun
   <Description>k__BackingField: 'Shotgun
 
 '

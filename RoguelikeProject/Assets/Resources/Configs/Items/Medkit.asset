@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e832ee59ad144a23a0293dcc4899f6be, type: 3}
-  m_Name: Coffee
+  m_Name: Medkit
   m_EditorClassIdentifier: Assembly-CSharp::ItemSystem.Infrastructure.Config.ItemConfig
-  <Id>k__BackingField: item_coffee
-  <Name>k__BackingField: Cofee
-  <Description>k__BackingField: More speed
+  <Id>k__BackingField: item_medkit
+  <Name>k__BackingField: Medkit
+  <Description>k__BackingField: Increase hp and heal
   <Icon>k__BackingField: {fileID: 0}
   <Effects>k__BackingField:
-  - {fileID: 11400000, guid: b1291759c7b594146b2f3e5d9f4743fe, type: 2}
+  - {fileID: 11400000, guid: d6f97119a32f0c74cb59d35a2f6c4161, type: 2}

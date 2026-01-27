@@ -1,3 +1,4 @@
+using Player.Domain.PlayerStats;
 using UnityEngine;
 using Weapons.Domain.Pool;
 using Weapons.Domain.Weapon;
@@ -13,10 +14,10 @@ namespace Weapons.Infrastructure.Config
         [field: SerializeField] public int PelletCount { get; private set; } = 5;
         [field: SerializeField] public float SpreadAngle { get; private set; } = 30f;
         
-        public override IWeapon CreateWeapon(WeaponProjectilePool pool)
+        public override IWeapon CreateWeapon(WeaponProjectilePool pool, IPlayerStatsProvider stats)
         {
-            return new Shotgun(WeaponProjectilePrefab, BaseFireRate, Damage, 
-                Speed, PelletCount, SpreadAngle, BulletLifetime, pool);
+            return new Shotgun(WeaponProjectilePrefab, BaseFireRate, BaseDamage, 
+                Speed, PelletCount, SpreadAngle, BulletLifetime, pool, stats);
         }
     }
 }
