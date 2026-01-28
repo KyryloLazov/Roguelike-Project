@@ -16,20 +16,20 @@ MonoBehaviour:
   - EventKey: Fire
     Clip: {fileID: 8300000, guid: 85beea308ad0e8d43ba49fed58570128, type: 3}
     Volume: 1
-    Pitch: 0
+    Pitch: 1
     Loop: 0
   - EventKey: Hit
     Clip: {fileID: 8300000, guid: c6912e7d631df3b419a9e5d3adc2243f, type: 3}
     Volume: 1
-    Pitch: 0
+    Pitch: 1
     Loop: 0
   - EventKey: Heal
     Clip: {fileID: 8300000, guid: 8b0ff603cd2953b469a417482ea894b7, type: 3}
     Volume: 1
-    Pitch: 0
+    Pitch: 1
     Loop: 0
   - EventKey: Music
     Clip: {fileID: 0}
     Volume: 1
-    Pitch: 0
+    Pitch: 1
     Loop: 0

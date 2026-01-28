@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e832ee59ad144a23a0293dcc4899f6be, type: 3}
+  m_Name: PoisonBullets
+  m_EditorClassIdentifier: Assembly-CSharp::ItemSystem.Infrastructure.Config.ItemConfig
+  <Id>k__BackingField: item_posion
+  <Name>k__BackingField: Poison Bullets
+  <Description>k__BackingField: Adds poison to your shots. Does not stack
+  <Icon>k__BackingField: {fileID: 0}
+  <Effects>k__BackingField:
+  - {fileID: 11400000, guid: aaa9eb02bdde69f4c939651c629bf680, type: 2}

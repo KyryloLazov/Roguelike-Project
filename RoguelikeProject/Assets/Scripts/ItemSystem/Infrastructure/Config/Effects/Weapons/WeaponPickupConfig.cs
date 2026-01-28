@@ -4,7 +4,7 @@ using Weapons.Infrastructure.Config;
 
 namespace ItemSystem.Infrastructure.Config
 {
-    [CreateAssetMenu(menuName = "Configs/Items/Effects/Weapon Pickup")]
+    [CreateAssetMenu(menuName = "Configs/Items/Effects/Weapons/Weapon Pickup")]
     public class WeaponPickupConfig: ItemEffectConfig
     {
         [field: SerializeField] public WeaponConfig WeaponConfig { get; private set; }

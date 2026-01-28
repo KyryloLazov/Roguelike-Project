@@ -50,7 +50,7 @@ namespace Weapons.Presentation
         {
             if (other.TryGetComponent(out IDamageable damageable))
             {
-                if (!other.CompareTag("Player"))
+                if (other.gameObject.layer != LayerMask.NameToLayer("Player"))
                 {
                     damageable.TakeDamage(_damage);
                 }

@@ -53,10 +53,6 @@ namespace Weapons.Domain
         {
             if (_currentWeapon == null) return;
             
-            float playerFireRateMultiplier = _statsProvider.GetStat(StatType.FireRate).Value;
-            
-            if (playerFireRateMultiplier <= 0) playerFireRateMultiplier = 1f;
-            
             _currentWeapon.Tick(Time.deltaTime);
 
             if (_inputService.IsFireHeld)

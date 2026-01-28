@@ -68,7 +68,7 @@ namespace Enemy.Presentation
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Player"))
+            if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
             {
                 other.GetComponent<IDamageable>().TakeDamage(_stats.Damage);
             }

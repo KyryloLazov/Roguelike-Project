@@ -15,19 +15,25 @@ namespace Player.Domain.Items
             public readonly PlayerEvents Events;
             public readonly PlayerWeaponController Weapons;
             public readonly PlayerStateMachineData StateData;
+            public readonly VFXManager VFXManager;
+            public readonly AudioHub AudioHub;
 
             public PlayerContext(
                 IPlayerStatsMutable stats, 
                 PlayerStatusModel health, 
                 PlayerEvents events, 
                 PlayerWeaponController weapons,
-                PlayerStateMachineData stateData)
+                PlayerStateMachineData stateData,
+                VFXManager vfxManager,
+                AudioHub audioHub)
             {
                 Stats = stats;
                 Health = health;
                 Events = events;
                 Weapons = weapons;
                 StateData = stateData;
+                VFXManager = vfxManager;
+                AudioHub = audioHub;
             }
         }
     }
